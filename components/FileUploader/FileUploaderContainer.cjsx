@@ -11,14 +11,12 @@ FileUploader   = require './FileUploader'
 mapStateToProps = (state) ->
   { id, assetType, category, requestingUploadUrl } = state?.fileUploader
 
-  { id, assetType, category, requestingUploadUrl }
-
 container =
   propTypes:
-    id       : PropTypes.string.isRequired
-    assetType: PropTypes.string.isRequired
-    category : PropTypes.string.isRequired
-    dispatch : PropTypes.func.isRequired
+    id            : PropTypes.string.isRequired
+    assetType     : PropTypes.string.isRequired
+    category      : PropTypes.string.isRequired
+    dispatch      : PropTypes.func.isRequired
 
   onChange: (files) ->
     { dispatch, id, assetType, category } = this.props

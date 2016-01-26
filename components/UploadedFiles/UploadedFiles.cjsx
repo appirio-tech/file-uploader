@@ -5,15 +5,15 @@ require './UploadedFilesStyles'
 React        = require 'react'
 UploadedFile = require '../UploadedFile/UploadedFile'
 
-UploadedFiles = ({ files, onDelete }) ->
+UploadedFiles = ({ files, onDelete, enableCaptions }) ->
   <ul className="UploadedFiles flex wrap">
     {
       files?.map (file) ->
-        { preview, progress, fileName, fileId, tempId } = file
+        { preview, progress, fileName, fileId, errors } = file
 
         status         = 'uploaded'
         status         = 'uploading' unless fileId
-        enableCaptions = true
+        status         = 'failed' if errors
         captions       = 'hello'
         onDeleteProxy  = ->
           onDelete file

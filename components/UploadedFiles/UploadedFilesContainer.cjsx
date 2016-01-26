@@ -10,7 +10,7 @@ UploadedFiles = require './UploadedFiles'
 { createClass, createElement, PropTypes } = React
 
 mapStateToProps = (state) ->
-  { id, assetType, category } = state?.fileUploader
+  { id, assetType, category, enableCaptions } = state?.fileUploader
 
   filterAttachments = (attachments) ->
     filteredFiles = []
@@ -29,11 +29,12 @@ mapStateToProps = (state) ->
 
 container =
   propTypes:
-    id       : PropTypes.string.isRequired
-    assetType: PropTypes.string.isRequired
-    category : PropTypes.string.isRequired
-    dispatch : PropTypes.func.isRequired
-    files    : PropTypes.array.isRequired
+    id            : PropTypes.string.isRequired
+    assetType     : PropTypes.string.isRequired
+    category      : PropTypes.string.isRequired
+    dispatch      : PropTypes.func.isRequired
+    files         : PropTypes.array.isRequired
+    enableCaptions: PropTypes.bool
 
   onDelete: (file) ->
     this.props.dispatch deleteAttachment file
@@ -44,9 +45,12 @@ container =
     dispatch getAttachments { id, assetType, category }
 
   render: ->
+    { files, enableCaptions } = this.props
+
     createElement UploadedFiles,
-      files: this.props.files
-      onDelete: this.onDelete
+      files         : files
+      onDelete      : this.onDelete
+      enableCaptions: enableCaptions
 
 module.exports = connect(mapStateToProps)(createClass(container))
 

@@ -30,7 +30,7 @@ store = configureStore
       filePath    : 'some/unique/path3'
       fileType    : 'image/jpeg'
       id          : 'workid'
-      tempId      : 'batman'
+      tempId      : 'mockDataInRouterError.jpg' # should match key
       errors      : []
     'mockDataInRouter2.jpg':
       assetType   : 'specs'
