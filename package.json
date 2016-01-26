@@ -1,6 +1,6 @@
 {
-  "name": "appirio-tech-ng-file-upload",
-  "version": "1.0.1",
+  "name": "appirio-tech-file-uploader",
+  "version": "0.0.0",
   "main": "./index.coffee",
   "devDependencies": {
     "react-router": "^1.0.3",
