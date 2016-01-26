@@ -8,19 +8,22 @@ UploadedFile = require './UploadedFile'
 
 container =
   propTypes:
-    file: PropTypes.object.isRequired
+    status        : PropTypes.string.isRequired
+    preview       : PropTypes.string.isRequired
+    progress      : PropTypes.number
+    deleteId      : PropTypes.string.isRequired
+    fileName      : PropTypes.string.isRequired
+    enableCaptions: PropTypes.bool
+    captions      : PropTypes.string
 
   onDelete: ->
-    { dispatch, file } = this.props
+    { dispatch, deleteId } = this.props
 
-    dispatch deleteAttachment file
+    dispatch deleteAttachment(deleteId)
 
   render: ->
-    { preview, progress, fileName, enableCaptions, captions, fileId } = this.props.file
+    { preview, progress, fileName, enableCaptions, captions, fileId, status } = this.props
     { onDelete } = this
-
-    status = 'uploaded'
-    status = 'uploading' unless fileId
 
     createElement UploadedFile, {
       status
@@ -29,7 +32,6 @@ container =
       fileName
       enableCaptions
       captions
-      fileId
       onDelete
     }
 

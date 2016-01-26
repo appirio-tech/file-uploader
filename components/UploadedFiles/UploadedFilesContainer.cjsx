@@ -1,10 +1,11 @@
 'use strict'
 
-React              = require 'react'
-{ connect }        = require 'react-redux'
-{ getAttachments } = require 'appirio-tech-client-app-layer'
-classnames         = require 'classnames'
-UploadedFiles      = require './UploadedFiles'
+React         = require 'react'
+{ connect }   = require 'react-redux'
+classnames    = require 'classnames'
+UploadedFiles = require './UploadedFiles'
+
+{ getAttachments, deleteAttachment } = require 'appirio-tech-client-app-layer'
 
 { createClass, createElement, PropTypes } = React
 
@@ -34,13 +35,18 @@ container =
     dispatch : PropTypes.func.isRequired
     files    : PropTypes.array.isRequired
 
+  onDelete: (file) ->
+    this.props.dispatch deleteAttachment file
+
   componentWillMount: ->
     { dispatch, id, assetType, category } = this.props
 
     dispatch getAttachments { id, assetType, category }
 
   render: ->
-    createElement UploadedFiles, files: this.props.files
+    createElement UploadedFiles,
+      files: this.props.files
+      onDelete: this.onDelete
 
 module.exports = connect(mapStateToProps)(createClass(container))
 
