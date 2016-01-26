@@ -5,7 +5,7 @@ require './UploadedFileStyles'
 React      = require 'react'
 classnames = require 'classnames'
 
-UploadedFile = ({status, imageSrc, progress, fileName, onRemove, enableCaptions, captions}) ->
+UploadedFile = ({ status, preview, progress, fileName, enableCaptions, captions, onDelete }) ->
   <div className="UploadedFile">
     <main className="flex column middle center" >
       {
@@ -18,15 +18,15 @@ UploadedFile = ({status, imageSrc, progress, fileName, onRemove, enableCaptions,
             </button>
           </div>
         else
-          if imageSrc
-            <div className="preview" style={backgroundImage: "url(#{imageSrc})"} />
+          if preview
+            <div className="preview" style={backgroundImage: "url(#{preview})"} />
           else
             <img className="document-icon" src={require './icon-document.svg'} />
       }
       {
         if status == 'uploading'
           <div className="progress">
-            <progress value={progress}" max="100">
+            <progress value={progress} max="100">
               {progress}%
             </progress>
           </div>
@@ -37,7 +37,7 @@ UploadedFile = ({status, imageSrc, progress, fileName, onRemove, enableCaptions,
       <p className="file-name">{ fileName }</p>
       {
         unless status == 'uploading'
-          <button className="clean" type="button">
+          <button className="clean" type="button" onClick={onDelete}>
             <div className="icon cross"/>
           </button>
       }

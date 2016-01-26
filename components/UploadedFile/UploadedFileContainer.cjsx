@@ -1,24 +1,36 @@
-# 'use strict'
+'use strict'
 
-# React          = require 'react'
-# classnames     = require 'classnames'
-# UploadedFile   = require './UploadedFile'
+{ deleteAttachment }                      = require 'appirio-tech-client-app-layer'
+{ connect }                               = require 'react-redux'
+{ createElement, createClass, PropTypes } = require 'react'
 
-# onRemove = ->
-#   console.log 'onRemove'
+UploadedFile = require './UploadedFile'
 
-# UploadedFileContainer = ({id}) ->
-#   props =
-#     status        : 'uploading'
-#     src           : null
-#     isImage       : true
-#     progress      : 50
-#     fileName      : 'crochet-turtle.jpg'
-#     onRemove      : onRemove
-#     enableCaptions: true
-#     captions      : 'i am a caption'
+container =
+  propTypes:
+    file: PropTypes.object.isRequired
 
-#   React.createElement UploadedFile, props
+  onDelete: ->
+    { dispatch, file } = this.props
 
-# module.exports = UploadedFileContainer
+    dispatch deleteAttachment file
 
+  render: ->
+    { preview, progress, fileName, enableCaptions, captions, fileId } = this.props.file
+    { onDelete } = this
+
+    status = 'uploaded'
+    status = 'uploading' unless fileId
+
+    createElement UploadedFile, {
+      status
+      preview
+      progress
+      fileName
+      enableCaptions
+      captions
+      fileId
+      onDelete
+    }
+
+module.exports = connect()(createClass(container))
