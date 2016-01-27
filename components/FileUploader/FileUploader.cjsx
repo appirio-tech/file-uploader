@@ -5,12 +5,13 @@ require './FileUploaderStyles'
 React                  = require 'react'
 UploadedFilesContainer = require '../UploadedFiles/UploadedFilesContainer'
 Dropzone               = require 'react-dropzone'
+Loader                 = require 'appirio-tech-ng-ui-components/components/Loader/Loader.cjsx'
 
-FileUploader = ({ multiple, onChange, requestingUploadUrl}) ->
+FileUploader = ({ multiple, onChange, loading}) ->
   <div className="FileUploader">
     {
-      if requestingUploadUrl
-        <h1>requestingUploadUrl...</h1>
+      if loading
+        <Loader />
     }
     <UploadedFilesContainer/>
 

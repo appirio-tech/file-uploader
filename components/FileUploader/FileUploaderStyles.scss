@@ -1,6 +1,12 @@
 @import "work/work-includes";
 
 .FileUploader {
+  position: relative;
+
+  .Loader {
+    z-index: 1;
+  }
+
   .UploadedFiles {
     margin-bottom: 20px;
   }
