@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "appirio-styles": "0.x.x",
-    "appirio-tech-client-app-layer": "https://github.com/appirio-tech/client-app-layer.git#attachments",
+    "appirio-tech-client-app-layer": "https://github.com/appirio-tech/client-app-layer.git#master",
     "appirio-tech-ng-auth": "4.x.x",
     "appirio-tech-ng-ui-components": "2.x.x",
     "react-dropzone": "3.x.x",
