@@ -8,7 +8,7 @@ UploadedFile = require '../UploadedFile/UploadedFile'
 UploadedFiles = ({ files, onDelete, enableCaptions }) ->
   <ul className="UploadedFiles flex wrap">
     {
-      files?.map (file) ->
+      files?.map (file, i) ->
         { preview, progress, fileName, fileId, errors } = file
 
         status         = 'uploaded'
@@ -18,7 +18,7 @@ UploadedFiles = ({ files, onDelete, enableCaptions }) ->
         onDeleteProxy  = ->
           onDelete file
 
-        <li>
+        <li key={i}>
           <UploadedFile
             preview={preview}
             progress={progress}
