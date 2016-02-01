@@ -1,7 +1,5 @@
 # Appirio File Uploader
 
-## Using the repo in your app
-
 ## Install
 
 ```shell
